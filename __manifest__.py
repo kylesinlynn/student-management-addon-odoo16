@@ -14,6 +14,7 @@
         * Public website display of confirmed students
     """,
     'author': 'Kyle Sin Lynn',
+    'license': 'AGPL-3',
     'depends': ['base', 'website'],
     'data': [
         'security/security.xml',

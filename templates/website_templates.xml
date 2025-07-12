@@ -73,7 +73,7 @@
                                                             <strong>Courses:</strong>
                                                             <br/>
                                                             <t t-foreach="student.course_ids" t-as="course">
-                                                                <span class="badge badge-primary mr-1 mb-1">
+                                                                <span class="badge rounded-pill bg-primary me-1 mb-1">
                                                                     <t t-esc="course.name"/>
                                                                 </span>
                                                             </t>
