@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Translations
+*.mo
+*.pot
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-*
+
+# Odoo specific
+*.log
+.settings/
+
+# Local development
+.env
+env/
+venv/
+ENV/
+
+# Temporary files
+*.swp
+*~

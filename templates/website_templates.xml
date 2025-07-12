@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Students List Template -->
+        <template id="students_list" name="Students List">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure oe_empty">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="text-center mb-4">Our Students</h1>
+                                
+                                <!-- Course Filter -->
+                                <div class="row mb-4">
+                                    <div class="col-md-6 offset-md-3">
+                                        <form method="get" action="/students">
+                                            <div class="input-group">
+                                                <select name="course_filter" class="form-control">
+                                                    <option value="">All Courses</option>
+                                                    <t t-foreach="courses" t-as="course">
+                                                        <option t-att-value="course.id" 
+                                                                t-att-selected="'selected' if selected_course and int(selected_course) == course.id else None">
+                                                            <t t-esc="course.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit">Filter</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <!-- Students Grid -->
+                                <div class="row">
+                                    <t t-if="not students">
+                                        <div class="col-12">
+                                            <div class="alert alert-info text-center">
+                                                <h4>No confirmed students found</h4>
+                                                <p>There are currently no confirmed students to display.</p>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-foreach="students" t-as="student">
+                                        <div class="col-lg-4 col-md-6 mb-4">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <div class="mb-3">
+                                                        <t t-if="student.image_1920">
+                                                            <img t-att-src="'data:image/png;base64,%s' % student.image_1920.decode('utf-8')" 
+                                                                 class="rounded-circle" 
+                                                                 style="width: 100px; height: 100px; object-fit: cover;"
+                                                                 t-att-alt="student.name"/>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <div class="rounded-circle bg-secondary d-inline-flex align-items-center justify-content-center" 
+                                                                 style="width: 100px; height: 100px;">
+                                                                <i class="fa fa-user fa-3x text-white"></i>
+                                                            </div>
+                                                        </t>
+                                                    </div>
+                                                    <h5 class="card-title">
+                                                        <t t-esc="student.name"/>
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        <small class="text-muted">
+                                                            Student ID: <t t-esc="student.student_id"/>
+                                                        </small>
+                                                    </p>
+                                                    <t t-if="student.course_ids">
+                                                        <div class="mb-2">
+                                                            <strong>Courses:</strong>
+                                                            <br/>
+                                                            <t t-foreach="student.course_ids" t-as="course">
+                                                                <span class="badge badge-primary mr-1 mb-1">
+                                                                    <t t-esc="course.name"/>
+                                                                </span>
+                                                            </t>
+                                                        </div>
+                                                    </t>
+                                                    <t t-if="student.email">
+                                                        <p class="card-text">
+                                                            <small class="text-muted">
+                                                                <i class="fa fa-envelope"></i> <t t-esc="student.email"/>
+                                                            </small>
+                                                        </p>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

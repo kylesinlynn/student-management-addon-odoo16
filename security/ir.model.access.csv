@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student_student_manager,student.student.manager,model_student_student,group_student_manager,1,1,1,1
+access_student_student_user,student.student.user,model_student_student,group_student_user,1,0,0,0
+access_student_course_manager,student.course.manager,model_student_course,group_student_manager,1,1,1,1
+access_student_course_user,student.course.user,model_student_course,group_student_user,1,0,0,0
+access_student_student_public,student.student.public,model_student_student,,1,0,0,0
+access_student_course_public,student.course.public,model_student_course,,1,0,0,0

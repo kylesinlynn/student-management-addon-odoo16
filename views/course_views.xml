@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Course Tree View -->
+        <record id="view_course_tree" model="ir.ui.view">
+            <field name="name">student.course.tree</field>
+            <field name="model">student.course</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Course Form View -->
+        <record id="view_course_form" model="ir.ui.view">
+            <field name="name">student.course.form</field>
+            <field name="model">student.course</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_students" type="object" class="oe_stat_button" icon="fa-users">
+                                <field name="student_count" widget="statinfo" string="Students"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Course Name"/>
+                            </h1>
+                            <h2>
+                                <field name="code" placeholder="Course Code"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <notebook>
+                            <page string="Students">
+                                <field name="student_ids">
+                                    <tree>
+                                        <field name="student_id"/>
+                                        <field name="name"/>
+                                        <field name="email"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Course Action -->
+        <record id="action_course" model="ir.actions.act_window">
+            <field name="name">Courses</field>
+            <field name="res_model">student.course</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first course!
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

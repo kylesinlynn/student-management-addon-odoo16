@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Student Manager Group -->
+        <record id="group_student_manager" model="res.groups">
+            <field name="name">Student Manager</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Student User Group -->
+        <record id="group_student_user" model="res.groups">
+            <field name="name">Student User</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Record Rules -->
+        <record id="student_rule_manager" model="ir.rule">
+            <field name="name">Student Manager Rule</field>
+            <field name="model_id" ref="model_student_student"/>
+            <field name="groups" eval="[(4, ref('group_student_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        <record id="student_rule_user" model="ir.rule">
+            <field name="name">Student User Rule</field>
+            <field name="model_id" ref="model_student_student"/>
+            <field name="groups" eval="[(4, ref('group_student_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        <record id="course_rule_manager" model="ir.rule">
+            <field name="name">Course Manager Rule</field>
+            <field name="model_id" ref="model_student_course"/>
+            <field name="groups" eval="[(4, ref('group_student_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        <record id="course_rule_user" model="ir.rule">
+            <field name="name">Course User Rule</field>
+            <field name="model_id" ref="model_student_course"/>
+            <field name="groups" eval="[(4, ref('group_student_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+    </data>
+</odoo>
